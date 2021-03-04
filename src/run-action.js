@@ -1,6 +1,7 @@
 const createLabelIfNotExists = require('./github/create-label-if-not-exists');
 const addLabel = require('./github/add-label');
 const removeLabel = require('./github/remove-label');
+const existsLabel = require('./github/exists-label');
 
 const getLabelConfig = (tools) => {
   const labelConfig = [
@@ -24,6 +25,11 @@ const getLabelConfig = (tools) => {
       size: tools.inputs.l_max_size,
       color: 'ffffb5',
     },
+    {
+      name: 'size_xl',
+      size: Infinity,
+      color: 'cce2cb',
+    },
   ];
   return labelConfig;
 };
@@ -37,11 +43,23 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
 };
 
 const getNumberOfLines = async (tools) => {
-  return 10;
+  return 100;
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
-  return null;
+  await Promise.all(
+    labelConfig.map(async (item) => {
+      const { name } = item;
+      if (await existsLabel(tools, name)) {
+        await removeLabel(tools, name);
+      }
+    }),
+  );
+
+  const element = labelConfig.find((elem) => numberOfLines <= elem.size);
+  if (element) {
+    await addLabel(tools, element.name);
+  }
 };
 
 module.exports = async (tools) => {

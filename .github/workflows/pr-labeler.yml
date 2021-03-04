@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Label the PR size
     steps:
-      - uses: coverwallet/pr-labeler@feature/op-554-create-labels-if-not-exits
+      - uses: coverwallet/pr-labeler@feature/op-554-add-remove-labels
         with:
           xs_max_size: '10'
           s_max_size: '100'
