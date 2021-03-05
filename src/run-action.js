@@ -42,8 +42,27 @@ const createLabelsIfNotExists = async (tools, labelConfig) => {
   );
 };
 
+/**
+ * @param {import('actions-toolkit').Toolkit} tools
+ */
+
 const getNumberOfLines = async (tools) => {
-  return 100;
+  try {
+    tools.log.info(`Getting the number of lines`);
+    const { data : files } = await tools.github.pulls.listFiles({
+      ...tools.context.repo,
+      pull_number: tools.context.issue.number,
+    });
+    const numberOfLines = files.reduce((accumulator, file) => {
+      return accumulator + file.changes;
+    }, 0);
+    tools.log.info(`Number of lines changed: ${numberOfLines}`);
+    return numberOfLines;
+  } catch (error) {
+    tools.log.info(
+      `Error happens when we listing the files of the pull request: ${error}`,
+    );
+  }
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
