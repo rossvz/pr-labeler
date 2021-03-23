@@ -1,4 +1,4 @@
-name: 'Pull Request size labeler'
+name: 'Pull Request Sizer'
 description: 'Label a PR based on the amount of changes excluding from the counting some customed files'
 inputs:
   GITHUB_TOKEN:
