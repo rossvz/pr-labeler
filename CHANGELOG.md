@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/coverwallet/pr-labeler/compare/v1.1.0...v1.2.0) (2021-03-23)
+
+
+### Features
+
+* **op-554:** modify action name ([#17](https://www.github.com/coverwallet/pr-labeler/issues/17)) ([3ddd904](https://www.github.com/coverwallet/pr-labeler/commit/3ddd904dd51872484ab8ec2b229a70e3e830cb4c))
+
 ## [1.1.0](https://www.github.com/coverwallet/pr-labeler/compare/v1.0.0...v1.1.0) (2021-03-23)
 
 
