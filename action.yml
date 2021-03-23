@@ -1,0 +1,35 @@
+name: 'Pull Request size labeler'
+description: 'Label a PR based on the amount of changes excluding from the counting some customed files'
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub token'
+    required: true
+  xs_max_size:
+    description: 'Max size for a PR to be considered xs'
+    required: true
+  s_max_size:
+    description: 'Max size for a PR to be considered s'
+    required: true
+  m_max_size:
+    description: 'Max size for a PR to be considered m'
+    required: true
+    default: '500'
+  l_max_size:
+    description: 'Max size for a PR to be considered l'
+    required: true
+  exclude_files:
+    description: 'Report GitHub Workflow failure if the PR size is xl allowing to forbid PR merge'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.GITHUB_TOKEN }}
+    - ${{ inputs.xs_max_size }}
+    - ${{ inputs.s_max_size }}
+    - ${{ inputs.m_max_size }}
+    - ${{ inputs.l_max_size }}
+    - ${{ inputs.exclude_files }}
+branding:
+  icon: 'tag'
+  color: 'red'
