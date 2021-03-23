@@ -1,9 +1,6 @@
 name: 'Pull Request Sizer'
 description: 'Label a PR based on the amount of changes excluding from the counting some customed files'
 inputs:
-  GITHUB_TOKEN:
-    description: 'GitHub token'
-    required: true
   xs_max_size:
     description: 'Max size for a PR to be considered xs'
     required: true
@@ -24,7 +21,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.GITHUB_TOKEN }}
     - ${{ inputs.xs_max_size }}
     - ${{ inputs.s_max_size }}
     - ${{ inputs.m_max_size }}
