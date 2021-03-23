@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/coverwallet/pr-labeler/compare/v1.0.0...v1.1.0) (2021-03-23)
+
+
+### Features
+
+* **op-554:** create action yml file ([#15](https://www.github.com/coverwallet/pr-labeler/issues/15)) ([5aeb06e](https://www.github.com/coverwallet/pr-labeler/commit/5aeb06ede79b1fbd5bbbaec67d3c18f6e907db1e))
+
 ## 1.0.0 (2021-03-22)
 
 
