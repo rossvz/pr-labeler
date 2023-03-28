@@ -73,10 +73,7 @@ const getNumberOfLines = async (tools) => {
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
   const currentLabels = await listCurrentLabels(tools);
-  tools.log.info(`current labels are ${JSON.stringify(currentLabels)}`)
   const newLabel = labelConfig.find((elem) => numberOfLines <= elem.size);
-
-  tools.log.info(`new label is ${JSON.stringify(newLabel)}`);
   if (currentLabels.some(l => l.name == newLabel.name)) {
     tools.log.info("Label already matches. Skipping.")
     return;
