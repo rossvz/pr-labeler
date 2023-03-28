@@ -1,8 +1,6 @@
 <br />
 <p align="center">
-  <a href="https://www.coverwallet.com/">
-    <img src="images/logo.png" alt="Logo" width="400" height="100">
-  </a>
+ 
 
   <h3 align="center">pr-labeler</h3>
 
@@ -32,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Label the PR size
     steps:
-      - uses: coverwallet/pr-labeler@v1.2.1
+      - uses: rossvz/pr-labeler@v1.3.0
         with:
           xs_max_size: '10'
           s_max_size: '100'
