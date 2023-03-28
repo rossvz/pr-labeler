@@ -73,14 +73,16 @@ const getNumberOfLines = async (tools) => {
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
   const currentLabels = await listCurrentLabels(tools);
+  tools.log.info(`current labels are ${currentLabels}`)
   const newLabel = labelConfig.find((elem) => numberOfLines <= elem.size);
 
+  tools.log.info(`new label is ${newLabel}`);
   if (currentLabels.includes(l => l.name == newLabel.name)) return;
 
   await Promise.all(
     labelConfig.map(async (item) => {
       const { name } = item;
-      if (await existsLabel(tools, name)) {
+      if (await existsLabel(tools, name) && name != newLabel.name) {
         await removeLabel(tools, name);
       }
     }),
