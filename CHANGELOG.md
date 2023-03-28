@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.0] 2023-03-28
+
+* Skip remove/add of labels if the new label matches the existing label on the PR.
+
 ## [1.2.0](https://www.github.com/coverwallet/pr-labeler/compare/v1.1.0...v1.2.0) (2021-03-23)
 
 
