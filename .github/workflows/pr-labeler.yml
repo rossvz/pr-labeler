@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Label the PR size
     steps:
-      - uses: coverwallet/pr-labeler@v1.2.1
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: ./
         with:
           xs_max_size: '10'
           s_max_size: '100'

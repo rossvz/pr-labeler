@@ -2,6 +2,7 @@ const createLabelIfNotExists = require('./github/create-label-if-not-exists');
 const addLabel = require('./github/add-label');
 const removeLabel = require('./github/remove-label');
 const existsLabel = require('./github/exists-label');
+const listCurrentLabels = require('./github/list_current_labels')
 
 const getLabelConfig = (tools) => {
   const labelConfig = [
@@ -71,18 +72,23 @@ const getNumberOfLines = async (tools) => {
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
+  const currentLabels = await listCurrentLabels(tools);
+  const newLabel = labelConfig.find((elem) => numberOfLines <= elem.size);
+  if (currentLabels.some(l => l.name == newLabel.name)) {
+    tools.log.info("Label already matches. Skipping.")
+    return;
+  }
   await Promise.all(
     labelConfig.map(async (item) => {
       const { name } = item;
-      if (await existsLabel(tools, name)) {
+      if (await existsLabel(tools, name) && name != newLabel.name) {
         await removeLabel(tools, name);
       }
     }),
   );
 
-  const element = labelConfig.find((elem) => numberOfLines <= elem.size);
-  if (element) {
-    await addLabel(tools, element.name);
+  if (newLabel) {
+    await addLabel(tools, newLabel.name);
   }
 };
 
