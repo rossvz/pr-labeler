@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Label the PR size
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - uses: ./
         with:
           xs_max_size: '10'
