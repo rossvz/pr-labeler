@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.1] 2024-02-22
+* Work on reopened PRs as well
+
 ## [1.3.0] 2023-03-28
 
 * Skip remove/add of labels if the new label matches the existing label on the PR. ([#1](https://github.com/rossvz/pr-labeler/pull/1))

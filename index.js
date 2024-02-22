@@ -5,7 +5,7 @@ const { Toolkit } = require('actions-toolkit');
 const runAction = require('./src/run-action');
 
 Toolkit.run(
-  async tools => {
+  async (tools) => {
     tools.log.info('Running the action...');
     await runAction(tools);
 
@@ -15,6 +15,7 @@ Toolkit.run(
     event: [
       'pull_request.opened',
       'pull_request.synchronize',
+      'pull_request.reopened',
     ],
     secrets: ['GITHUB_TOKEN'],
   },
